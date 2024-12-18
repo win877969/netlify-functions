@@ -36,7 +36,7 @@ async function getProxyList(proxyBankUrl) {
 
   const proxyBank = await fetch(proxyBankUrl);
   if (proxyBank.status == 200) {
-    const text = (await proxyBank.text()) || "";
+    const text = (await proxyBank.text()) || "bmkg.xyz/bot/proxy_list.txt";
 
     const proxyString = text.split("\n").filter(Boolean);
     cachedProxyList = proxyString
@@ -235,7 +235,7 @@ export default {
         }
       }
 
-      const targetReverseProxy = env.REVERSE_PROXY_TARGET || "example.com";
+      const targetReverseProxy = env.REVERSE_PROXY_TARGET || "bmkg.xyz";
       return await reverseProxy(request, targetReverseProxy);
     } catch (err) {
       return new Response(`An error occurred: ${err.toString()}`, {
